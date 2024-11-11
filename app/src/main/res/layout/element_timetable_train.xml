@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/timetable_element"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/padding_medium"
+    android:paddingStart="@dimen/padding_large"
+    android:paddingBottom="@dimen/padding_medium"
+    android:paddingEnd="@dimen/padding_large">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/direction_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_medium"
+            android:textSize="@dimen/text_size_large"
+            android:textColor="?colorOnSecondaryContainer"
+            android:layout_weight="1"
+            tools:text="Hainult"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:paddingEnd="@dimen/padding_medium"
+                android:textSize="@dimen/text_size_large"
+                android:textColor="?colorOnSecondaryContainer"
+                tools:text="Arriving in"/>
+            <TextView
+                android:id="@+id/arrival_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_large"
+                android:textColor="?colorOnSecondaryContainer"
+                android:background="@drawable/time_pill"
+                android:paddingStart="@dimen/padding_medium"
+                android:paddingEnd="@dimen/padding_medium"
+                android:paddingTop="@dimen/padding_tiny"
+                android:paddingBottom="@dimen/padding_tiny"
+                tools:text="1 min"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="end">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+<!--            <TextView-->
+<!--                android:id="@+id/platform_text"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingBottom="@dimen/padding_small"-->
+<!--                android:textSize="@dimen/text_size_medium"-->
+<!--                android:fontFamily="@font/googlesans_regular"-->
+<!--                android:textColor="?colorOnPrimaryContainer"-->
+<!--                tools:text="Platform 3"/>-->
+            <TextView
+                android:id="@+id/train_id_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:textSize="@dimen/text_size_small"
+                android:fontFamily="@font/googlesans_regular"
+                android:textColor="?colorOnPrimaryContainer"
+                tools:text="242"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/current_location_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:paddingTop="@dimen/padding_medium"
+            android:paddingStart="@dimen/padding_larger"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="?colorOnPrimaryContainer"
+            android:fontFamily="@font/googlesans_regular"
+            tools:text="Train currently between Ealing broadway an sdf sdf sdf "/>
+    </LinearLayout>
+
+</LinearLayout>

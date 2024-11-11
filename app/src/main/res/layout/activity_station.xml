@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:contentInsetStart="@dimen/padding_larger">
+<!--            <ProgressBar-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:progress="@integer/material_motion_duration_medium_1"/>-->
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/close"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:src="@drawable/ic_baseline_close_24"
+                android:padding="12dp"/>
+            <LinearLayout
+                android:id="@+id/tube_status_element"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/transport_pill"
+                android:backgroundTint="@color/green"
+                android:layout_gravity="end">
+                <ImageView
+                    android:id="@+id/transport_status_dot"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="@dimen/padding_small"
+                    android:src="@drawable/baseline_radio_button_checked_24"
+                    tools:src="@drawable/baseline_radio_button_checked_24"/>
+                <TextView
+                    android:id="@+id/tube_status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/padding_medium"
+                    android:paddingTop="@dimen/padding_tiny"
+                    android:paddingBottom="@dimen/padding_tiny"
+                    android:textColor="@color/green"
+                    android:text="@string/live"
+                    tools:text="Live"/>
+            </LinearLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/station_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/station_recycler_view"
+                android:paddingBottom="@dimen/padding_huge"
+                android:clipToPadding="false"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </FrameLayout>
+
+
+
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/fab"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="bottom|end"-->
+    <!--        android:layout_marginEnd="@dimen/fab_margin"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        app:srcCompat="@android:drawable/ic_dialog_email" />-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

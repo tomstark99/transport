@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/placeholder"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:paddingStart="@dimen/side_padding"
+    android:layout_marginStart="@dimen/side_padding"
+    android:layout_marginEnd="@dimen/side_padding"
+    android:layout_marginTop="@dimen/padding_medium"
+    android:background="@drawable/placeholder_animation">
+
+</androidx.constraintlayout.widget.ConstraintLayout>

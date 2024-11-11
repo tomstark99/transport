@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.navigation.tube.SecondFragment">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorPrimary"
+        android:text="colorPrimary" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnPrimary"
+        android:text="colorOnPrimary" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorPrimaryContainer"
+        android:text="colorPrimaryContainer" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnPrimaryContainer"
+        android:text="colorOnPrimaryContainer" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorSecondary"
+        android:text="colorSecondary" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnSecondary"
+        android:text="colorOnSecondary" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorSecondaryContainer"
+        android:text="colorSecondaryContainer" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnSecondaryContainer"
+        android:text="colorOnSecondaryContainer" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorTertiary"
+        android:text="colorTertiary" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnTertiary"
+        android:text="colorOnTertiary" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnTertiary"
+        android:text="colorOnTertiary" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorTertiaryContainer"
+        android:text="colorTertiaryContainer" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnTertiaryContainer"
+        android:text="colorOnTertiaryContainer" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorError"
+        android:text="colorError" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnError"
+        android:text="colorOnError" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorErrorContainer"
+        android:text="colorErrorContainer" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnErrorContainer"
+        android:text="colorOnErrorContainer" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOutline"
+        android:text="colorOutline" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?android:colorBackground"
+        android:text="android:colorBackground" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnBackground"
+        android:text="colorOnBackground" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorSurface"
+        android:text="colorSurface" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnSurface"
+        android:text="colorOnSurface" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorSurfaceVariant"
+        android:text="colorSurfaceVariant" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnSurfaceVariant"
+        android:text="colorOnSurfaceVariant" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorSurfaceInverse"
+        android:text="colorSurfaceInverse" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorOnSurfaceInverse"
+        android:text="colorOnSurfaceInverse" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="?colorPrimaryInverse"
+        android:text="colorPrimaryInverse" />
+
+
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>
