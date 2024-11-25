@@ -12,5 +12,6 @@ interface LineMvp : BaseMvp {
     }
     interface Presenter : BaseMvp.Presenter {
         fun onCreate(line: TubeLine)
+        fun onRefresh(line: TubeLine)
     }
 }

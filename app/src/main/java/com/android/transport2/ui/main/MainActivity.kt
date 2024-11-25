@@ -1,18 +1,16 @@
 package com.android.transport2.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.android.transport2.R
 import com.android.transport2.arch.android.BaseActivity
 import com.android.transport2.arch.android.BaseFragment
+import com.android.transport2.arch.utils.Utils
 import com.android.transport2.databinding.ActivityMainBinding
 import com.android.transport2.ui.navigation.train.FirstFragment
 import com.android.transport2.ui.navigation.tube.SecondFragment
@@ -29,7 +27,7 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        binding.toolbar.title = getString(R.string.nav_train)
+        binding.toolbar.title = "Good ${Utils.getContextTimeString()}!" //getString(R.string.nav_home)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
@@ -97,7 +95,7 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
                 R.id.menu_train -> {
                     fragment = trainFragment()
                     swapFragment(fragmentMap[activeFragment]!!, fragment)
-                    binding.toolbar.title = getString(R.string.nav_train)
+                    binding.toolbar.title = "Good ${Utils.getContextTimeString()}!"// getString(R.string.nav_train)
                     activeFragment = TAG_TRAIN_FRAGMENT
                 }
                 R.id.menu_tube -> {

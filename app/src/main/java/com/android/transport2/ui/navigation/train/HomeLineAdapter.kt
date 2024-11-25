@@ -1,16 +1,21 @@
-package com.android.transport2.ui.navigation.tube.line
+package com.android.transport2.ui.navigation.train
 
 import android.app.Activity
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
+import com.android.transport2.R
 import com.android.transport2.arch.android.Load
+import com.android.transport2.arch.managers.TubeManager
 import com.android.transport2.arch.managers.TubeManager.TubeLine
+import com.android.transport2.arch.managers.TubeManager.TubeLine.Companion.stringToTubeLine
 import com.android.transport2.arch.models.TubeStop
 import com.android.transport2.databinding.ElementLineBinding
 import com.android.transport2.ui.navigation.tube.TubeAdapter
+import com.android.transport2.ui.navigation.tube.line.ConnectionAdapter
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
@@ -19,7 +24,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
-class LineAdapter(private val line: TubeLine, private val context: Activity, private val load: Load) : RecyclerView.Adapter<LineAdapter.LineViewHolder>() {
+class HomeLineAdapter(private val context: Activity, private val load: Load) : RecyclerView.Adapter<HomeLineAdapter.LineViewHolder>() {
 
     private var stops = mutableListOf<TubeStop>()
 
@@ -42,9 +47,9 @@ class LineAdapter(private val line: TubeLine, private val context: Activity, pri
             is Status.Normal -> {
                 with(holder) {
                     with(stops[position]) {
-                        val drawable = binding.tubeStatusElement.background as GradientDrawable
-                        drawable.setColor(context.getColor(line.color))
-                        binding.tubeStatusElement.background = drawable
+//                        val drawable = binding.tubeStatusElement.background as GradientDrawable
+//                        drawable.setColor(context.getColor(R.color.md_theme_light_onPrimaryContainer))
+//                        binding.tubeStatusElement.background = drawable
                         binding.stopText.text = name
                         val additionalInfo = """Zone ${additionalProperties!!["Zone"]}""" +
                                 if (additionalProperties["Escalators"].isNullOrEmpty() || additionalProperties["Escalators"] == "0") "    " else """    ${additionalProperties["Escalators"]} Escalators""" +
@@ -70,7 +75,7 @@ class LineAdapter(private val line: TubeLine, private val context: Activity, pri
 
     }
 
-    override fun onViewAttachedToWindow(holder: LineAdapter.LineViewHolder) {
+    override fun onViewAttachedToWindow(holder: HomeLineAdapter.LineViewHolder) {
         super.onViewAttachedToWindow(holder)
         holder.disposable?.dispose()
         holder.disposable = RxView.clicks(holder.binding.tubeStatusElement)
@@ -80,7 +85,7 @@ class LineAdapter(private val line: TubeLine, private val context: Activity, pri
                 with(stops[holder.adapterPosition]) {
                     load.onStationClicked(origin, this)
                 }
-//                val line = stringToTubeLine(lines[holder.adapterPosition].name)
+//                val line = stringToTubeLine(name)
 //                load.onLineClicked(line!!)
             }
     }

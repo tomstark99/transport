@@ -13,11 +13,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class TubePresenter(tubeView : TubeMvp.View, private val tubeManager: TubeManager = DataModule.tubeManager) : BasePresenter<TubeMvp.View>(tubeView), TubeMvp.Presenter {
 
     override fun onCreate() {
-        getLineService(TubeLine.values().toList())
+        getLineService(TubeLine.validTubeLines())
     }
 
     override fun onRefresh() {
-        getLineService(TubeLine.values().toList())
+        getLineService(TubeLine.validTubeLines())
     }
 
     private fun getLineService(lines: List<TubeLine>){

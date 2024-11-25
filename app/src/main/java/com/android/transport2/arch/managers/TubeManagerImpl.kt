@@ -29,8 +29,7 @@ class TubeManagerImpl (private val service: TransportService) : TubeManager {
             line.id,
             station.id
         ).map { response ->
-            response.map { TubeTime.fromTemplate(it)!! }.groupBy {
-
+            response.map { TubeTime.fromTemplate(it) }.groupBy {
                 TubeManager.TubeDirection.stringToTubeDirection(it.direction)
             }
         }

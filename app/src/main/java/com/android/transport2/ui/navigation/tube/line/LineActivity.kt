@@ -1,9 +1,8 @@
 package com.android.transport2.ui.navigation.tube.line
 
-import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import androidx.core.view.WindowCompat
@@ -54,6 +53,10 @@ class LineActivity : BaseActivity<LineMvp.Presenter>(), LineMvp.View, Load {
         binding.lineRecyclerView.itemAnimator = DefaultItemAnimator()
         binding.lineRecyclerView.adapter = adapter
 
+        binding.lineSwipeRefresh.setOnRefreshListener {
+            presenter.onRefresh(line)
+        }
+
         presenter = LinePresenter(this)
         presenter.onCreate(line)
     }
@@ -79,7 +82,11 @@ class LineActivity : BaseActivity<LineMvp.Presenter>(), LineMvp.View, Load {
         }
     }
 
+    @SuppressLint("MissingPermission")
     override fun showStops(stops: List<TubeStop>) {
+        if (binding.lineSwipeRefresh.isRefreshing) {
+            binding.lineSwipeRefresh.isRefreshing = false
+        }
 //        if (adapter is PlaceholderAdapter) {
 //            (adapter as PlaceholderAdapter).stopAnimation()
 //        }
@@ -99,7 +106,7 @@ class LineActivity : BaseActivity<LineMvp.Presenter>(), LineMvp.View, Load {
                 if (adapter is PlaceholderAdapter) {
                     (adapter as PlaceholderAdapter).stopAnimation()
                 }
-                adapter = LineAdapter(line, this, this)
+                adapter = LineAdapter(this, this)
                 binding.lineRecyclerView.adapter = adapter
                 if (filteredSorted.isEmpty()) {
                     (adapter as LineAdapter).showStops(stops.sortedBy { it.name })
@@ -111,22 +118,22 @@ class LineActivity : BaseActivity<LineMvp.Presenter>(), LineMvp.View, Load {
                 if (adapter is PlaceholderAdapter) {
                     (adapter as PlaceholderAdapter).stopAnimation()
                 }
-                adapter = LineAdapter(line, this, this)
+                adapter = LineAdapter(this, this)
                 binding.lineRecyclerView.adapter = adapter
                 (adapter as LineAdapter).showStops(stops.sortedBy { it.name })
             }
-
-
-
 //        }
     }
 
     override fun showError() {
+        if (binding.lineSwipeRefresh.isRefreshing) {
+            binding.lineSwipeRefresh.isRefreshing = false
+        }
         if (adapter is PlaceholderAdapter) {
             (adapter as PlaceholderAdapter).stopAnimation()
             (adapter as PlaceholderAdapter).clear()
         }
-        adapter = LineAdapter(line, this, this)
+        adapter = LineAdapter(this, this)
         binding.lineRecyclerView.adapter = adapter
         if (adapter is LineAdapter) {
             (adapter as LineAdapter).showError()

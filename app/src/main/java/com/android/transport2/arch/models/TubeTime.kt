@@ -1,6 +1,9 @@
 package com.android.transport2.arch.models
 
 import com.android.transport2.arch.managers.TubeManager
+import com.android.transport2.arch.managers.TubeManager.TubeLine.UNKNOWN
+import com.android.transport2.arch.models.TubeStop.Companion.emptyTubeStop
+import org.joda.time.DateTime
 import java.io.Serializable
 
 data class TubeTime(
@@ -16,7 +19,8 @@ data class TubeTime(
     val vehicleId: String
 ): Serializable {
     companion object{
-        fun fromTemplate(template: TubeTimeTemplate) : TubeTime? {
+        fun fromTemplate(template: TubeTimeTemplate) : TubeTime {
+            val line = TubeManager.TubeLine.stringToTubeLine(template.lineId)
             val platformName = if (template.platformName.contains("-")) {
                 template.platformName
             } else {
@@ -34,7 +38,8 @@ data class TubeTime(
                 null,
                 null,
                 null,
-                null)
+                null,
+                line!!) // hopefully this doesn't blow up
             val destination = if (template.destinationNaptanId.isNullOrEmpty()) null else TubeStop(
                 template.destinationNaptanId,
                 template.destinationName!!
@@ -44,12 +49,12 @@ data class TubeTime(
                 null,
                 null,
                 null,
-                null
-            )
+                null,
+                line)
             return TubeTime(
-                TubeManager.TubeLine.stringToTubeLine(template.lineId),
+                line,
                 station,
-                if (direction == "Platform") """${direction} ${platform}""" else direction,
+                if (direction == "Platform") """${direction} ${platform}""" else if (direction.contains(Regex("^(Inner|Outer) Rail$"))) platform else direction,
                 platform,
                 template.towards,
                 template.timeToStation,
@@ -57,6 +62,21 @@ data class TubeTime(
                 destination,
                 template.currentLocation,
                 template.vehicleId
+            )
+        }
+
+        fun emptyTubeTime(): TubeTime {
+            return TubeTime(
+                line = UNKNOWN,
+                station = emptyTubeStop(),
+                direction = "No Upcoming Departures",
+                platform = "Unknown",
+                towards = "",
+                timeToStation = -1,
+                expectedArrival = DateTime.now().toString(),
+                destination = emptyTubeStop(),
+                currentLocation = "",
+                vehicleId = "Unknown"
             )
         }
     }

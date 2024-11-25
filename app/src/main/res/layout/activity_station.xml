@@ -31,28 +31,25 @@
                 android:src="@drawable/ic_baseline_close_24"
                 android:padding="12dp"/>
             <LinearLayout
-                android:id="@+id/tube_status_element"
+                android:id="@+id/connection_status_element"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/transport_pill"
-                android:backgroundTint="@color/green"
                 android:layout_gravity="end">
                 <ImageView
-                    android:id="@+id/transport_status_dot"
+                    android:id="@+id/connection_status_dot"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:padding="@dimen/padding_small"
-                    android:src="@drawable/baseline_radio_button_checked_24"
-                    tools:src="@drawable/baseline_radio_button_checked_24"/>
+                    tools:src="@drawable/ic_baseline_radio_button_checked_24"/>
                 <TextView
-                    android:id="@+id/tube_status_text"
+                    android:id="@+id/connection_status_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="@dimen/padding_medium"
                     android:paddingTop="@dimen/padding_tiny"
                     android:paddingBottom="@dimen/padding_tiny"
-                    android:textColor="@color/green"
                     android:text="@string/live"
                     tools:text="Live"/>
             </LinearLayout>

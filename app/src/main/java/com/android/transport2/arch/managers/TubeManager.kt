@@ -15,6 +15,8 @@ interface TubeManager {
     fun getTimetableService(line: TubeLine, station: TubeStop): Single<Map<TubeDirection, List<TubeTime>>>
 
     enum class TubeDirection(var id: String) {
+        INNER_RAIL("Inner Rail"),
+        OUTER_RAIL("Outer Rail"),
         NORTHBOUND("Northbound"),
         EASTBOUND("Eastbound"),
         SOUTHBOUND("Southbound"),
@@ -30,8 +32,11 @@ interface TubeManager {
         PLATFORM_I("I"),
         PLATFORM_J("J"),
         PLATFORM_1("Platform 1"),
+        PLATFORM_1A("Platform 1A"),
         PLATFORM_2("Platform 2"),
+        PLATFORM_2A("Platform 2A"),
         PLATFORM_3("Platform 3"),
+        PLATFORM_3A("Platform 3A"),
         PLATFORM_4("Platform 4"),
         PLATFORM_5("Platform 5"),
         PLATFORM_6("Platform 6"),
@@ -44,11 +49,12 @@ interface TubeManager {
         PLATFORM_13("Platform 13"),
         PLATFORM_14("Platform 14"),
         PLATFORM_15("Platform 15"),
-        PLATFORM_UNKNOWN("Platform Unknown");
+        PLATFORM_UNKNOWN("Platform Unknown"),
+        PLATFORM_ERROR("No Upcoming Departures");
 
         companion object {
             fun stringToTubeDirection(direction: String): TubeDirection {
-                return values().first { it.id.equals(direction) }
+                return values().first { it.id == direction }
             }
         }
     }
@@ -67,11 +73,16 @@ interface TubeManager {
         WATERLOO("waterloo-city", R.string.line_waterloo, R.color.colour_waterloo),
         ELIZABETH("elizabeth", R.string.line_elizabeth, R.color.colour_elizabeth),
         DLR("dlr", R.string.line_dlr, R.color.colour_dlr),
-        OVERGROUND("london-overground", R.string.line_overground, R.color.colour_overground);
+        OVERGROUND("london-overground", R.string.line_overground, R.color.colour_overground),
+        UNKNOWN("unknown", R.string.line_unknown, R.color.md_theme_onPrimaryContainer_30); // this colour is just a placeholder
 
         companion object{
             fun stringToTubeLine(line: String): TubeLine?{
                 return values().firstOrNull { it.id == line }
+            }
+
+            fun validTubeLines(): List<TubeLine> {
+                return TubeLine.values().filterNot { it == UNKNOWN }
             }
         }
     }

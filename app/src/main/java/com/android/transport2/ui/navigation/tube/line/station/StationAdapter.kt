@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.transport2.arch.managers.TubeManager.*
-import com.android.transport2.arch.models.Tube
+import com.android.transport2.arch.managers.TubeManager.TubeDirection.PLATFORM_UNKNOWN
 import com.android.transport2.arch.models.TubeStop
 import com.android.transport2.arch.models.TubeTime
 import com.android.transport2.databinding.ElementTimetableBinding
@@ -66,7 +66,14 @@ class StationAdapter(private val line: TubeLine,
 //        val platforms = platformEntryTimes.orEmpty().groupBy { it.platform }
 //        val mappedPlatforms = platforms.mapKeys { TubeDirection.PLATFORM.apply { id = it.key }}
 //        timetable.filterNot { it.key == TubeDirection.PLATFORM }
-        this.timetable = timetable
+        var newTimetable = timetable
+        if (timetable.isEmpty()) {
+            val emptyTimetable = timetable.toMutableMap()
+            emptyTimetable[PLATFORM_UNKNOWN] = listOf(TubeTime.emptyTubeTime())
+            newTimetable = emptyTimetable
+        }
+
+        this.timetable = newTimetable
             .flatMap { it.value }
             .distinctBy { it.timeToStation  }
             .groupBy { it.direction }
@@ -84,7 +91,7 @@ class StationAdapter(private val line: TubeLine,
 //        this.timetable = timetable.entries.toMutableList()
 //        this.timetable.addAll(mappedPlatforms.entries)
         status = Status.Normal
-        notifyItemRangeChanged(0, this.timetable.size-1)
+        notifyDataSetChanged()
     }
 
     fun showError(){

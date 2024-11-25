@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/transport_card"
     android:paddingTop="@dimen/padding_medium"
     android:paddingStart="@dimen/padding_large"
     android:paddingBottom="@dimen/padding_medium"

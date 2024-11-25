@@ -2,11 +2,20 @@ package com.android.transport2.ui.navigation.tube.line.station
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.VectorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Parcelable
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.transport2.R
 import com.android.transport2.arch.android.BaseActivity
 import com.android.transport2.arch.managers.TubeManager.*
 import com.android.transport2.arch.models.TubeStop
@@ -22,11 +31,21 @@ import java.util.concurrent.TimeUnit
 class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
 
     private var disposable: Disposable? = null
-    private lateinit var binding: ActivityStationBinding
+    private var recyclerViewState: Parcelable? = null
 
+    private lateinit var binding: ActivityStationBinding
     private lateinit var adapter: RecyclerView.Adapter<*>
     private lateinit var line: TubeLine
     private lateinit var station: TubeStop
+    private lateinit var refreshDrawable: Drawable
+
+    private val handler = Handler()
+    private val runnable = object : Runnable {
+        override fun run() {
+            animationRunnable()
+            handler.postDelayed(this, 10000)
+        }
+    }
 
     companion object {
         const val LINE = "line"
@@ -73,7 +92,10 @@ class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
     }
 
     override fun setRefresh() {
-        disposable = Observable.interval(5000, TimeUnit.MILLISECONDS)
+        stopAnimation()
+        setConnectionStatus(Colour.GREY) // adding this here because too lazy to make setActivityDefaults (or something like that)
+
+        disposable = Observable.interval(10000, TimeUnit.MILLISECONDS)
             .repeat()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -93,8 +115,12 @@ class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
         adapter = StationAdapter(line, station, this)
         binding.stationRecyclerView.adapter = adapter
         if (adapter is StationAdapter) {
+            recyclerViewState = binding.stationRecyclerView.layoutManager?.onSaveInstanceState()
             (adapter as StationAdapter).showTimetable(times)
+            binding.stationRecyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
         }
+        setConnectionStatus(Colour.LIVE)
+        startAnimation()
     }
 
     override fun showError() {
@@ -108,12 +134,49 @@ class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
         adapter = StationAdapter(line, station, this)
         binding.stationRecyclerView.adapter = adapter
         if (adapter is StationAdapter) {
-            (adapter as StationAdapter).showError()
+            (adapter as StationAdapter).showTimetable(emptyMap())
         }
+        stopAnimation()
+        setConnectionStatus(Colour.RED)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         disposable?.dispose()
+    }
+
+    private fun startAnimation() {
+        refreshDrawable = try {
+            binding.connectionStatusDot.drawable as AnimationDrawable
+        } catch (e: ClassCastException) {
+            binding.connectionStatusDot.drawable as VectorDrawable
+        }
+        handler.post(runnable)
+    }
+
+    private fun stopAnimation() {
+        handler.removeCallbacks(runnable)
+    }
+
+    private fun animationRunnable() {
+        val animationRefreshDrawable = refreshDrawable as AnimationDrawable
+        if (animationRefreshDrawable.isRunning) {
+            animationRefreshDrawable.stop()
+        }
+        animationRefreshDrawable.start()
+    }
+
+    private fun setConnectionStatus(colour: Colour) {
+        val drawableStatusElement = binding.connectionStatusElement.background as GradientDrawable
+        drawableStatusElement.setColor(getColor(colour.background))
+        binding.connectionStatusElement.background = drawableStatusElement
+        binding.connectionStatusText.setTextColor(getColor(colour.text))
+        binding.connectionStatusDot.setImageResource(colour.dot)
+    }
+
+    private enum class Colour(@DrawableRes val dot: Int, @ColorRes val text: Int, @ColorRes val background: Int){
+        RED(R.drawable.ic_disconnected, R.color.red, R.color.red_30),
+        LIVE(R.drawable.live_refresh_animation, R.color.green, R.color.green_30),
+        GREY(R.drawable.ic_outline_radio_button_unchecked_24, R.color.grey, R.color.grey_30)
     }
 }

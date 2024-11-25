@@ -10,13 +10,16 @@ data class TubeStop(
     val lines: List<TubeLine?>?,
     val additionalProperties: Map<String, String>?,
     val lat: Double?,
-    val lon: Double?
+    val lon: Double?,
+    val origin: TubeLine
 ): Serializable {
     companion object{
-        fun fromTemplate(origin: TubeLine, template: TubeStopTemplate) : TubeStop? {
-            val lines = template.lines.filter {
-                    line -> line.id in TubeLine.values().filterNot { it == origin }.map { it.id }
-            }.map { TubeLine.stringToTubeLine(it.id) }
+        fun fromTemplate(origin: TubeLine, template: TubeStopTemplate) : TubeStop {
+            // Stop filtering out origin line to allow home screen to show all services from that station
+//            val lines = template.lines.filter {
+//                    line -> line.id in TubeLine.values().filterNot { it == origin }.map { it.id }
+//            }.map { TubeLine.stringToTubeLine(it.id) }
+            val lines = template.lines.filter { line -> line.id in TubeLine.values().map { it.id } }.map { TubeLine.stringToTubeLine(it.id) }
             val additionalProperties = template.additionalProperties.associate { it.key to it.value }
             return TubeStop(
                 template.id,
@@ -26,7 +29,20 @@ data class TubeStop(
                 lines,
                 additionalProperties,
                 template.lat.toDouble(),
-                template.lon.toDouble()
+                template.lon.toDouble(),
+                origin
+            )
+        }
+
+        fun emptyTubeStop() : TubeStop {
+            return TubeStop(
+                id = "unknown",
+                name = "Unknown",
+                lines = emptyList(),
+                additionalProperties = emptyMap(),
+                lat = "0".toDouble(),
+                lon = "0".toDouble(),
+                origin = TubeLine.UNKNOWN
             )
         }
     }

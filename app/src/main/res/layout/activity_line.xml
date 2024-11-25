@@ -35,12 +35,23 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <androidx.recyclerview.widget.RecyclerView
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/line_recycler_view"-->
+<!--            android:paddingBottom="@dimen/padding_huge"-->
+<!--            android:clipToPadding="false"/>-->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/line_swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/line_recycler_view"
-            android:paddingBottom="@dimen/padding_huge"
-            android:clipToPadding="false"/>
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/line_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/padding_large"
+                android:clipToPadding="false"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </FrameLayout>
 
 

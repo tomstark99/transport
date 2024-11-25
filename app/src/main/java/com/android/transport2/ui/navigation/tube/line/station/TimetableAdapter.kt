@@ -68,6 +68,7 @@ class TimetableAdapter(private val context: Activity) : RecyclerView.Adapter<Tim
                     .toFormatter()
                 formatter.print(period.normalizedStandard())
             }
+            time == -1 -> "Check station board"
             else -> "Due"
         }
     }
