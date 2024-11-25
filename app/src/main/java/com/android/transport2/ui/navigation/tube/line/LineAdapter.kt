@@ -19,7 +19,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
-class LineAdapter(private val line: TubeLine, private val context: Activity, private val load: Load) : RecyclerView.Adapter<LineAdapter.LineViewHolder>() {
+class LineAdapter(private val context: Activity, private val load: Load) : RecyclerView.Adapter<LineAdapter.LineViewHolder>() {
 
     private var stops = mutableListOf<TubeStop>()
 
