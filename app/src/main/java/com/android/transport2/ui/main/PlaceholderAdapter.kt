@@ -55,7 +55,7 @@ class PlaceholderAdapter : RecyclerView.Adapter<PlaceholderAdapter.PlaceholderVi
     }
 
     fun stopAnimation(){
-        if(disposable != null) disposable!!.dispose()
+        disposable?.dispose()
     }
 
     override fun getItemCount(): Int {

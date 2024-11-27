@@ -1,13 +1,13 @@
 package com.android.transport2.arch.utils
 
+import android.app.Activity
+import android.graphics.drawable.GradientDrawable
 import com.android.transport2.arch.PreferenceModule
-import com.android.transport2.arch.managers.TubeManager
 import com.android.transport2.arch.managers.TubeManager.TubeLine
 import com.android.transport2.arch.models.TubeStop
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.joda.time.DateTime
-import org.joda.time.DateTimeConstants
 
 
 object Utils {
@@ -41,5 +41,22 @@ object Utils {
         return getCachedAllTubeStops().filter { stop ->
             stop.origin == line
         }
+    }
+
+
+    fun getGradientDrawable(
+        context: Activity,
+        initialRadius: Float,
+        colours: List<Int>
+    ): GradientDrawable {
+        val drawable: GradientDrawable
+        if (colours.size > 1) {
+            drawable = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colours.map { context.getColor(it) }.toIntArray())
+        } else {
+            drawable = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, null)
+            drawable.setColor(context.getColor(colours.first()))
+        }
+        drawable.cornerRadius = initialRadius
+        return drawable
     }
 }

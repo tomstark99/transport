@@ -35,7 +35,7 @@ data class TubeTime(
                     .replace("Underground ", "", true)
                     .replace("DLR ", "", true)
                     .replace("Rail ", "", true),
-                null,
+                emptyList(),
                 null,
                 null,
                 null,
@@ -46,7 +46,7 @@ data class TubeTime(
                     .replace("Underground ", "", true)
                     .replace("DLR ", "", true)
                     .replace("Rail ", "", true),
-                null,
+                emptyList(),
                 null,
                 null,
                 null,

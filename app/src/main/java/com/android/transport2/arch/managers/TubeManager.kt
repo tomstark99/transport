@@ -73,8 +73,14 @@ interface TubeManager {
         WATERLOO("waterloo-city", R.string.line_waterloo, R.color.colour_waterloo),
         ELIZABETH("elizabeth", R.string.line_elizabeth, R.color.colour_elizabeth),
         DLR("dlr", R.string.line_dlr, R.color.colour_dlr),
+        LIBERTY("liberty", R.string.line_liberty, R.color.colour_liberty),
+        LIONESS("lioness", R.string.line_lioness, R.color.colour_lioness),
+        MILDMAY("mildmay", R.string.line_mildmay, R.color.colour_mildmay),
+        SUFFRAGETTE("suffragette", R.string.line_suffragette, R.color.colour_suffragette),
+        WEAVER("weaver", R.string.line_weaver, R.color.colour_weaver),
+        WINDRUSH("windrush", R.string.line_windrush, R.color.colour_windrush),
         OVERGROUND("london-overground", R.string.line_overground, R.color.colour_overground),
-        UNKNOWN("unknown", R.string.line_unknown, R.color.md_theme_onPrimaryContainer_30); // this colour is just a placeholder
+        UNKNOWN("unknown", R.string.line_unknown, R.color.md_theme_onPrimaryContainer); // this colour is just a placeholder
 
         companion object{
             fun stringToTubeLine(line: String): TubeLine?{
@@ -82,7 +88,7 @@ interface TubeManager {
             }
 
             fun validTubeLines(): List<TubeLine> {
-                return TubeLine.values().filterNot { it == UNKNOWN }
+                return TubeLine.values().filterNot { listOf(OVERGROUND, UNKNOWN).contains(it) }
             }
         }
     }

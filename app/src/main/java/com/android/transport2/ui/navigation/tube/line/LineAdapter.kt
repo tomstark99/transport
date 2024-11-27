@@ -43,7 +43,7 @@ class LineAdapter(private val context: Activity, private val load: Load) : Recyc
                 with(holder) {
                     with(stops[position]) {
                         val drawable = binding.tubeStatusElement.background as GradientDrawable
-                        drawable.setColor(context.getColor(line.color))
+                        drawable.setColor(context.getColor(origin.color))
                         binding.tubeStatusElement.background = drawable
                         binding.stopText.text = name
                         val additionalInfo = """Zone ${additionalProperties!!["Zone"]}""" +

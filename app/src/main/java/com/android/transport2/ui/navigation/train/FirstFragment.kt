@@ -18,7 +18,7 @@ import com.android.transport2.arch.models.TubeTime
 import com.android.transport2.databinding.FragmentFirstBinding
 import com.android.transport2.ui.main.PlaceholderAdapter
 import com.android.transport2.ui.navigation.tube.line.LineActivity
-import com.android.transport2.ui.navigation.tube.line.station.StationActivity
+import com.android.transport2.ui.navigation.train.station.StationActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -91,12 +91,13 @@ class FirstFragment : BaseFragment<TrainMvp.Presenter>(), TrainMvp.View, Load {
 //        adapter = LineAdapter(line, this, this)
 //        binding.lineRecyclerView.adapter = adapter
 //        if (adapter is LineAdapter) {
+        val distinct = stops.distinctBy { it.id }
         fusedLocationClient.getCurrentLocation(PERMISSION_REQUEST_ACCESS_FINE_LOCATION, null)
             .addOnSuccessListener { location ->
-                val filtered = stops.filter { stop ->
+                val filtered = distinct.filter { stop ->
                     val stopLocation = Location("").apply { latitude = stop.lat!!; longitude = stop.lon!! }
                     location.distanceTo(stopLocation) < 1000
-                }.distinctBy { it.id }
+                }
                 val filteredSorted = filtered.sortedBy { stop ->
                     val stopLocation = Location("").apply { latitude = stop.lat!!; longitude = stop.lon!! }
                     location.distanceTo(stopLocation)
@@ -108,7 +109,7 @@ class FirstFragment : BaseFragment<TrainMvp.Presenter>(), TrainMvp.View, Load {
                     adapter = HomeLineAdapter(activity, this)
                     binding.homeNearbyRecycler.adapter = adapter
                     if (filteredSorted.isEmpty()) {
-                        (adapter as HomeLineAdapter).showStops(stops.sortedBy { it.name })
+                        (adapter as HomeLineAdapter).showStops(distinct.sortedBy { it.name })
                     } else {
                         (adapter as HomeLineAdapter).showStops(filteredSorted)
                     }
@@ -121,7 +122,7 @@ class FirstFragment : BaseFragment<TrainMvp.Presenter>(), TrainMvp.View, Load {
                 activity?.let { activity ->
                     adapter = HomeLineAdapter(activity, this)
                     binding.homeNearbyRecycler.adapter = adapter
-                    (adapter as HomeLineAdapter).showStops(stops.sortedBy { it.name })
+                    (adapter as HomeLineAdapter).showStops(distinct.sortedBy { it.name })
                 }
             }
     }

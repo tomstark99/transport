@@ -16,7 +16,7 @@ class TubeManagerImpl (private val service: TransportService) : TubeManager {
 
     override fun getStopsService(line: TubeManager.TubeLine): Single<List<TubeStop>> {
         return service.getStops(line.id).map { response ->
-            response.map { TubeStop.fromTemplate(line, it)!! }
+            response.map { TubeStop.fromTemplate(line, it) }
         }
     }
 

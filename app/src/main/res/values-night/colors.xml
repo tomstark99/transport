@@ -100,19 +100,45 @@
     <color name="md_theme_outlineVariant_30">#3349454F</color>
     <color name="md_theme_scrim_30">#33000000</color>
 
-    <color name="colour_piccadilly">#3300158f</color>
-    <color name="colour_bakerloo">#33894e24</color>
-    <color name="colour_central">#33dc241f</color>
-    <color name="colour_circle">#33ffce00</color>
-    <color name="colour_district">#33007229</color>
-    <color name="colour_hammersmith">#33d799af</color>
-    <color name="colour_jubilee">#336a7278</color>
-    <color name="colour_metropolitan">#33751056</color>
+<!--    <color name="colour_piccadilly">#3300158f</color>-->
+<!--    <color name="colour_bakerloo">#33894e24</color>-->
+<!--    <color name="colour_central">#33dc241f</color>-->
+<!--    <color name="colour_circle">#33ffce00</color>-->
+<!--    <color name="colour_district">#33007229</color>-->
+<!--    <color name="colour_hammersmith">#33d799af</color>-->
+<!--    <color name="colour_jubilee">#336a7278</color>-->
+<!--    <color name="colour_metropolitan">#33751056</color>-->
+<!--    <color name="colour_northern">#33000000</color>-->
+<!--    <color name="colour_victoria">#3300a0e2</color>-->
+<!--    <color name="colour_waterloo">#3376d0bd</color>-->
+<!--    <color name="colour_overground">#33e86a10</color>-->
+<!--    <color name="colour_elizabeth">#336950a1</color>-->
+<!--    <color name="colour_dlr">#3300afad</color>-->
+<!--    <color name="colour_tram">#3366cc00</color>-->
+
+    <!--    updated hex values-->
+    <color name="colour_bakerloo">#33a65a2a</color>
+    <color name="colour_central">#33e1251b</color>
+    <color name="colour_circle">#33ffcd00</color>
+    <color name="colour_district">#33007934</color>
+    <color name="colour_hammersmith">#33ec9bad</color>
+    <color name="colour_jubilee">#337b868c</color>
+    <color name="colour_metropolitan">#33870f54</color>
     <color name="colour_northern">#33000000</color>
-    <color name="colour_victoria">#3300a0e2</color>
-    <color name="colour_waterloo">#3376d0bd</color>
-    <color name="colour_overground">#33e86a10</color>
-    <color name="colour_elizabeth">#336950a1</color>
-    <color name="colour_dlr">#3300afad</color>
-    <color name="colour_tram">#3366cc00</color>
+    <color name="colour_piccadilly">#33000f9f</color>
+    <color name="colour_victoria">#3300a0df</color>
+    <color name="colour_waterloo">#336bcdb2</color>
+    <color name="colour_dlr">#3300afaa</color>
+    <color name="colour_elizabeth">#33773dbd</color>
+    <color name="colour_tram">#3376bc21</color>
+
+    <color name="colour_overground">#33ee7623</color>
+
+    <!--    These are eyedropped from tfl status website, not official hex-->
+    <color name="colour_liberty">#3361686b</color>
+    <color name="colour_lioness">#33ffa600</color>
+    <color name="colour_mildmay">#33006fe6</color>
+    <color name="colour_suffragette">#3318a95d</color>
+    <color name="colour_weaver">#339b0058</color>
+    <color name="colour_windrush">#33dc241f</color>
 </resources>

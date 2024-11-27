@@ -15,7 +15,7 @@ data class Tube(
     val stops: List<TubeStop>? = null
 ):Serializable{
     companion object{
-        fun fromTemplate(template: TubeTemplate):Tube?{
+        fun fromTemplate(template: TubeTemplate) : Tube? {
             val line = TubeManager.TubeLine.stringToTubeLine(template.id) ?: return null
             val reason = if(template.lineStatuses[0].reason.isNullOrEmpty()) "Good service, No issues reported" else template.lineStatuses[0].reason.orEmpty()
             return Tube(line, template.name.let { if ("line" in it) it.dropLast(5) else it }, line.color, template.modeName, template.lineStatuses[0].statusSeverity, template.lineStatuses[0].statusSeverityDescription, reason) //template.disruptions.name

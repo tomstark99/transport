@@ -7,7 +7,7 @@ import java.io.Serializable
 data class TubeStop(
     val id: String,
     val name: String,
-    val lines: List<TubeLine?>?,
+    val lines: List<TubeLine>,
     val additionalProperties: Map<String, String>?,
     val lat: Double?,
     val lon: Double?,
@@ -19,7 +19,9 @@ data class TubeStop(
 //            val lines = template.lines.filter {
 //                    line -> line.id in TubeLine.values().filterNot { it == origin }.map { it.id }
 //            }.map { TubeLine.stringToTubeLine(it.id) }
-            val lines = template.lines.filter { line -> line.id in TubeLine.values().map { it.id } }.map { TubeLine.stringToTubeLine(it.id) }
+            val lines = template.lines
+                .filter { line -> line.id in TubeLine.values().map { it.id } }
+                .mapNotNull { TubeLine.stringToTubeLine(it.id) }
             val additionalProperties = template.additionalProperties.associate { it.key to it.value }
             return TubeStop(
                 template.id,
