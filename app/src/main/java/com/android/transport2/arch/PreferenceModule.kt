@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.android.transport2.arch
 
 import android.preference.PreferenceManager

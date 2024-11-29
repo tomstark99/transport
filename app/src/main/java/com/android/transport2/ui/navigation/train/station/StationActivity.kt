@@ -39,6 +39,7 @@ class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
     private lateinit var station: TubeStop
     private lateinit var refreshDrawable: Drawable
 
+    @Suppress("DEPRECATION")
     private val handler = Handler()
     private val runnable = object : Runnable {
         override fun run() {

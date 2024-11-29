@@ -55,7 +55,7 @@ class LineAdapter(private val context: Activity, private val load: Load) : Recyc
                         binding.connectingLinesList.layoutManager = layoutManager
                         binding.connectingLinesList.itemAnimator = DefaultItemAnimator()
                         binding.connectingLinesList.adapter = ConnectionAdapter(context).apply {
-                            showConnection(lines!!.map { it!! })
+                            showConnection(lines.map { it })
                         }
                     }
                 }

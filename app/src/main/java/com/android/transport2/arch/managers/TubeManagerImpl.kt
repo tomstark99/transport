@@ -54,13 +54,13 @@ class TubeManagerImpl (private val service: TransportService) : TubeManager {
     }
 
 
-    @Suppress("UNCHECKED_CAST")
-    private fun List<TubeTime>.guessPlatform(): List<TubeTime> {
-        if(this.any { it.destination?.id == TubeManager.TubeDirection.PLATFORM_UNKNOWN.id }) {
-            val destinations = this.groupBy { it.destination?.id }
-            // TODO: make this flatten into Map<String?, TubeTime.platform> so that each direction string has an associated platform
-//            val platforms = destinations.flatMap { it? }
-            return this
-        } else { return this }
-    }
+//    @Suppress("UNCHECKED_CAST")
+//    private fun List<TubeTime>.guessPlatform(): List<TubeTime> {
+//        if(this.any { it.destination?.id == TubeManager.TubeDirection.PLATFORM_UNKNOWN.id }) {
+//            val destinations = this.groupBy { it.destination?.id }
+//            // TODO: make this flatten into Map<String?, TubeTime.platform> so that each direction string has an associated platform
+////            val platforms = destinations.flatMap { it? }
+//            return this
+//        } else { return this }
+//    }
 }

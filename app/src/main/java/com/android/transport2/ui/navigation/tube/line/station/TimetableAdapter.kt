@@ -40,7 +40,7 @@ class TimetableAdapter(private val context: Activity) : RecyclerView.Adapter<Tim
                     with(times[position]) {
                         binding.directionText.text = towards.ifEmpty { destination?.name?.replace(" Station", "", true) ?: "" }
 //                        binding.platformText.text = if (platform.length == 1) """Platform $platform""" else platform
-                        (binding.arrivalTimeText.background as GradientDrawable).setColor(context.getColor(line!!.color))
+                        (binding.arrivalTimeText.background as GradientDrawable).setColor(context.getColor(line.color))
                         binding.arrivalTimeText.text = timeToStation(timeToStation)
                         binding.currentLocationText.text = if (currentLocation.isNotEmpty()) """Currently ${currentLocation.first().lowercase()}${currentLocation.removeRange(0,1)}""" else ""
 //                        binding.trainIdText.text = """ID-$vehicleId"""

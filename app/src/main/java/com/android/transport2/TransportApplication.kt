@@ -9,7 +9,7 @@ class TransportApplication : Application() {
     override fun onCreate() {
         AppModule.application = this
         DynamicColors.applyToActivitiesIfAvailable(this)
-        JodaTimeAndroid.init(this)
+//        JodaTimeAndroid.init(this)
         super.onCreate()
     }
 }

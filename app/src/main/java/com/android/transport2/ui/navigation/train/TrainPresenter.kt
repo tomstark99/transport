@@ -26,7 +26,7 @@ class TrainPresenter(trainView : TrainMvp.View, private val tubeManager: TubeMan
         if (Utils.timeToSave()) {
             getStopsFromApi(lines)
         } else {
-            getStopsFromCache(lines)
+            getStopsFromCache()
         }
     }
 
@@ -43,7 +43,7 @@ class TrainPresenter(trainView : TrainMvp.View, private val tubeManager: TubeMan
                 Log.e("error", "something went wrong getting lines", e) }).addTo(subscription)
     }
 
-    private fun getStopsFromCache(lines: List<TubeLine>) {
+    private fun getStopsFromCache() {
         view?.showNearbyStops(Utils.getCachedAllTubeStops())
     }
 

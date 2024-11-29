@@ -93,7 +93,7 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
     override fun loadTabs() {
         @Suppress("DEPRECATION")
         binding.navigation.setOnNavigationItemSelectedListener { item ->
-            var fragment: Fragment? = null
+            val fragment: Fragment?
             when (item.itemId) {
                 R.id.menu_train -> {
                     fragment = trainFragment()

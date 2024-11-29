@@ -40,12 +40,14 @@ object ApiModule {
     }
 
     private val okhttp by lazy {
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
         OkHttpClient.Builder()
             .connectTimeout(5, TimeUnit.SECONDS)
             .readTimeout(1, TimeUnit.MINUTES)
             .addInterceptor(
-                HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.BODY))
+                httpLoggingInterceptor.apply {
+                    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+                })
             .build()
     }
 
