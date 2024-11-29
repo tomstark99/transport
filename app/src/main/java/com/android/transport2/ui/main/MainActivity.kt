@@ -40,17 +40,6 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
         } else {
             presenter.onReload()
         }
-
-//        val navController = findNavController(R.id.activity_mai)
-//        appBarConfiguration = AppBarConfiguration(navController.graph)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-//
-
-//        binding.fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAnchorView(R.id.fab)
-//                .setAction("Action", null).show()
-//        }
     }
 
 
@@ -73,20 +62,22 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
     override fun addFragments() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frame_layout, trainFragment(), TAG_TRAIN_FRAGMENT)
-//            .add(R.id.frame_layout, commuteFragment(), TAG_COMMUTE_FRAGMENT)
+            .add(R.id.frame_layout, commuteFragment(), TAG_COMMUTE_FRAGMENT)
             .add(R.id.frame_layout, tubeFragment(), TAG_TUBE_FRAGMENT)
-            .show(trainFragment())
-            .hide(tubeFragment())
+            .attach(trainFragment())
+            .detach(commuteFragment())
+            .detach(tubeFragment())
             .commit()
     }
 
     override fun reAddFragments() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frame_layout, trainFragment(), TAG_TRAIN_FRAGMENT)
-//            .add(R.id.frame_layout, commuteFragment(), TAG_COMMUTE_FRAGMENT)
+            .add(R.id.frame_layout, commuteFragment(), TAG_COMMUTE_FRAGMENT)
             .add(R.id.frame_layout, tubeFragment(), TAG_TUBE_FRAGMENT)
-            .hide(trainFragment())
-            .hide(tubeFragment())
+            .detach(trainFragment())
+            .detach(commuteFragment())
+            .detach(tubeFragment())
             .commit()
     }
 
@@ -101,12 +92,12 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
                     binding.toolbar.title = "Good ${Utils.getContextTimeString()}!"// getString(R.string.nav_train)
                     activeFragment = TAG_TRAIN_FRAGMENT
                 }
-//                R.id.menu_commute -> {
-//                    fragment = commuteFragment()
-//                    swapFragment(fragmentMap[activeFragment]!!, fragment)
-//                    binding.toolbar.title = "Good ${Utils.getContextTimeString()}!"// getString(R.string.nav_train)
-//                    activeFragment = TAG_COMMUTE_FRAGMENT
-//                }
+                R.id.menu_commute -> {
+                    fragment = commuteFragment()
+                    swapFragment(fragmentMap[activeFragment]!!, fragment)
+                    binding.toolbar.title = "Good ${Utils.getContextTimeString()}!"// getString(R.string.nav_train)
+                    activeFragment = TAG_COMMUTE_FRAGMENT
+                }
                 R.id.menu_tube -> {
                     fragment = tubeFragment()
                     swapFragment(fragmentMap[activeFragment]!!, fragment)
@@ -122,8 +113,9 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
     private fun swapFragment(from: Fragment, to: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .hide(from)
-            .show(to)
+            .detach(from)
+            .attach(to)
+//            .show(to)
             .commit()
     }
 
@@ -136,14 +128,14 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
         return fragment
     }
 
-//    private fun commuteFragment(): Fragment {
-//        var fragment = fragmentMap[TAG_COMMUTE_FRAGMENT]
-//        if (fragment == null) {
-//            fragment = MiddleFragment.newInstance()
-//            fragmentMap[TAG_COMMUTE_FRAGMENT] = fragment
-//        }
-//        return fragment
-//    }
+    private fun commuteFragment(): Fragment {
+        var fragment = fragmentMap[TAG_COMMUTE_FRAGMENT]
+        if (fragment == null) {
+            fragment = MiddleFragment.newInstance()
+            fragmentMap[TAG_COMMUTE_FRAGMENT] = fragment
+        }
+        return fragment
+    }
 
     private fun tubeFragment(): Fragment {
         var fragment = fragmentMap[TAG_TUBE_FRAGMENT]
