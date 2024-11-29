@@ -14,11 +14,10 @@ import com.android.transport2.arch.android.BaseFragment
 import com.android.transport2.arch.android.Load
 import com.android.transport2.arch.managers.TubeManager
 import com.android.transport2.arch.models.TubeStop
-import com.android.transport2.arch.models.TubeTime
 import com.android.transport2.databinding.FragmentFirstBinding
 import com.android.transport2.ui.main.PlaceholderAdapter
-import com.android.transport2.ui.navigation.tube.line.LineActivity
 import com.android.transport2.ui.navigation.train.station.StationActivity
+import com.android.transport2.ui.navigation.tube.TubeAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -29,6 +28,8 @@ class FirstFragment : BaseFragment<TrainMvp.Presenter>(), TrainMvp.View, Load {
 
     companion object {
         private const val PERMISSION_REQUEST_ACCESS_FINE_LOCATION = 100
+        private const val ONE_K = 1000
+        private const val FIVE_HUNDRED_M = 500
 
         fun newInstance() : FirstFragment {
             return FirstFragment()
@@ -76,27 +77,12 @@ class FirstFragment : BaseFragment<TrainMvp.Presenter>(), TrainMvp.View, Load {
         if (binding.homeSwipeRefresh.isRefreshing) {
             binding.homeSwipeRefresh.isRefreshing = false
         }
-//        if (adapter is PlaceholderAdapter) {
-//            (adapter as PlaceholderAdapter).stopAnimation()
-//        }
-//        adapter = TubeAdapter(activity!!, this)
-//        binding.homeNearbyRecycler.adapter = adapter
-//        if (adapter is TubeAdapter) {
-//            (adapter as TubeAdapter).showTube(lines.sortedBy { it.name })
-//        }
-
-        //        if (adapter is PlaceholderAdapter) {
-//            (adapter as PlaceholderAdapter).stopAnimation()
-//        }
-//        adapter = LineAdapter(line, this, this)
-//        binding.lineRecyclerView.adapter = adapter
-//        if (adapter is LineAdapter) {
         val distinct = stops.distinctBy { it.id }
         fusedLocationClient.getCurrentLocation(PERMISSION_REQUEST_ACCESS_FINE_LOCATION, null)
             .addOnSuccessListener { location ->
                 val filtered = distinct.filter { stop ->
                     val stopLocation = Location("").apply { latitude = stop.lat!!; longitude = stop.lon!! }
-                    location.distanceTo(stopLocation) < 1000
+                    location.distanceTo(stopLocation) < ONE_K + ONE_K + FIVE_HUNDRED_M
                 }
                 val filteredSorted = filtered.sortedBy { stop ->
                     val stopLocation = Location("").apply { latitude = stop.lat!!; longitude = stop.lon!! }
@@ -106,12 +92,12 @@ class FirstFragment : BaseFragment<TrainMvp.Presenter>(), TrainMvp.View, Load {
                     (adapter as PlaceholderAdapter).stopAnimation()
                 }
                 activity?.let { activity ->
-                    adapter = HomeLineAdapter(activity, this)
+                    adapter = LineAdapter(activity, this)
                     binding.homeNearbyRecycler.adapter = adapter
                     if (filteredSorted.isEmpty()) {
-                        (adapter as HomeLineAdapter).showStops(distinct.sortedBy { it.name })
+                        (adapter as LineAdapter).showStops(distinct.sortedBy { it.name })
                     } else {
-                        (adapter as HomeLineAdapter).showStops(filteredSorted)
+                        (adapter as LineAdapter).showStops(filteredSorted)
                     }
                 }
             }
@@ -120,23 +106,30 @@ class FirstFragment : BaseFragment<TrainMvp.Presenter>(), TrainMvp.View, Load {
                     (adapter as PlaceholderAdapter).stopAnimation()
                 }
                 activity?.let { activity ->
-                    adapter = HomeLineAdapter(activity, this)
+                    adapter = LineAdapter(activity, this)
                     binding.homeNearbyRecycler.adapter = adapter
-                    (adapter as HomeLineAdapter).showStops(distinct.sortedBy { it.name })
+                    (adapter as LineAdapter).showStops(distinct.sortedBy { it.name }.filter { it.name.startsWith("liverpool", ignoreCase = true) })
                 }
             }
     }
 
-    override fun showDefaultTimetable(times: Map<TubeManager.TubeDirection, List<TubeTime>>) {
-        TODO("Not yet implemented")
-    }
-
     override fun showError() {
-        TODO("Not yet implemented")
+        if (binding.homeSwipeRefresh.isRefreshing) {
+            binding.homeSwipeRefresh.isRefreshing = false
+        }
+        if (adapter is PlaceholderAdapter) {
+            (adapter as PlaceholderAdapter).stopAnimation()
+            (adapter as PlaceholderAdapter).clear()
+        }
+        adapter = TubeAdapter(activity!!, this)
+        binding.homeNearbyRecycler.adapter = adapter
+        if (adapter is TubeAdapter) {
+            (adapter as TubeAdapter).showError()
+        }
     }
 
     override fun onLineClicked(line: TubeManager.TubeLine) {
-        LineActivity.start(activity!!, line)
+//        LineActivity.start(activity!!, line)
     }
 
     override fun onStationClicked(line: TubeManager.TubeLine, station: TubeStop) {

@@ -12,6 +12,7 @@ import com.android.transport2.arch.android.BaseActivity
 import com.android.transport2.arch.android.BaseFragment
 import com.android.transport2.arch.utils.Utils
 import com.android.transport2.databinding.ActivityMainBinding
+import com.android.transport2.ui.navigation.commute.MiddleFragment
 import com.android.transport2.ui.navigation.train.FirstFragment
 import com.android.transport2.ui.navigation.tube.SecondFragment
 
@@ -72,6 +73,7 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
     override fun addFragments() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frame_layout, trainFragment(), TAG_TRAIN_FRAGMENT)
+//            .add(R.id.frame_layout, commuteFragment(), TAG_COMMUTE_FRAGMENT)
             .add(R.id.frame_layout, tubeFragment(), TAG_TUBE_FRAGMENT)
             .show(trainFragment())
             .hide(tubeFragment())
@@ -81,6 +83,7 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
     override fun reAddFragments() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frame_layout, trainFragment(), TAG_TRAIN_FRAGMENT)
+//            .add(R.id.frame_layout, commuteFragment(), TAG_COMMUTE_FRAGMENT)
             .add(R.id.frame_layout, tubeFragment(), TAG_TUBE_FRAGMENT)
             .hide(trainFragment())
             .hide(tubeFragment())
@@ -98,6 +101,12 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
                     binding.toolbar.title = "Good ${Utils.getContextTimeString()}!"// getString(R.string.nav_train)
                     activeFragment = TAG_TRAIN_FRAGMENT
                 }
+//                R.id.menu_commute -> {
+//                    fragment = commuteFragment()
+//                    swapFragment(fragmentMap[activeFragment]!!, fragment)
+//                    binding.toolbar.title = "Good ${Utils.getContextTimeString()}!"// getString(R.string.nav_train)
+//                    activeFragment = TAG_COMMUTE_FRAGMENT
+//                }
                 R.id.menu_tube -> {
                     fragment = tubeFragment()
                     swapFragment(fragmentMap[activeFragment]!!, fragment)
@@ -127,6 +136,15 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
         return fragment
     }
 
+//    private fun commuteFragment(): Fragment {
+//        var fragment = fragmentMap[TAG_COMMUTE_FRAGMENT]
+//        if (fragment == null) {
+//            fragment = MiddleFragment.newInstance()
+//            fragmentMap[TAG_COMMUTE_FRAGMENT] = fragment
+//        }
+//        return fragment
+//    }
+
     private fun tubeFragment(): Fragment {
         var fragment = fragmentMap[TAG_TUBE_FRAGMENT]
         if (fragment == null) {
@@ -139,6 +157,7 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
     companion object {
         private const val TAG_TRAIN_FRAGMENT = "train"
         private const val TAG_TUBE_FRAGMENT = "tube"
+        private const val TAG_COMMUTE_FRAGMENT = "commute"
     }
 
 }

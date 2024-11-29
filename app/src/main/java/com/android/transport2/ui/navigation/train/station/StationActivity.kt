@@ -78,11 +78,11 @@ class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
         binding.stationRecyclerView.adapter = adapter
 
         binding.stationSwipeRefresh.setOnRefreshListener {
-            presenter.onRefresh(line, station)
+            presenter.onRefresh(station)
         }
 
         presenter = StationPresenter(this)
-        presenter.onCreate(line, station)
+        presenter.onCreate(station)
     }
 
     override fun setClickables() {
@@ -101,7 +101,7 @@ class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
 //                binding.stationSwipeRefresh.isRefreshing = true
-                presenter.onRefresh(line, station)
+                presenter.onRefresh(station)
             }
     }
 
@@ -112,7 +112,7 @@ class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
         if (adapter is PlaceholderAdapter) {
             (adapter as PlaceholderAdapter).stopAnimation()
         }
-        adapter = StationAdapter(line, station, this)
+        adapter = StationAdapter(station, this)
         binding.stationRecyclerView.adapter = adapter
         if (adapter is StationAdapter) {
             recyclerViewState = binding.stationRecyclerView.layoutManager?.onSaveInstanceState()
@@ -131,7 +131,7 @@ class StationActivity : BaseActivity<StationMvp.Presenter>(), StationMvp.View {
             (adapter as PlaceholderAdapter).stopAnimation()
             (adapter as PlaceholderAdapter).clear()
         }
-        adapter = StationAdapter(line, station, this)
+        adapter = StationAdapter(station, this)
         binding.stationRecyclerView.adapter = adapter
         if (adapter is StationAdapter) {
             (adapter as StationAdapter).showTimetable(emptyMap())

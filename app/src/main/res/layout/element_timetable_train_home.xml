@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/transport_card"
     android:paddingTop="@dimen/padding_medium"
     android:paddingStart="@dimen/padding_large"
     android:paddingBottom="@dimen/padding_medium"
@@ -70,16 +69,16 @@
 <!--                android:fontFamily="@font/googlesans_regular"-->
 <!--                android:textColor="?colorOnPrimaryContainer"-->
 <!--                tools:text="Platform 3"/>-->
-<!--            <TextView-->
-<!--                android:id="@+id/train_id_text"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="bottom"-->
-<!--                android:textSize="@dimen/text_size_small"-->
-<!--                android:fontFamily="@font/googlesans_regular"-->
-<!--                android:textColor="?colorOnPrimaryContainer"-->
-<!--                tools:text="242"/>-->
+            <TextView
+                android:id="@+id/line_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:textSize="@dimen/text_size_small"
+                android:fontFamily="@font/googlesans_regular"
+                android:textColor="?colorOnPrimaryContainer"
+                tools:text="Elizabeth"/>
         </LinearLayout>
 
         <TextView

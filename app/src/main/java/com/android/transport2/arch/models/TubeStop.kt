@@ -14,6 +14,10 @@ data class TubeStop(
     val origin: TubeLine
 ): Serializable {
     companion object{
+
+        const val LIVERPOOL_STREET = "940GZZLULVT"
+        const val LATIMER_ROAD = "940GZZLULRD"
+
         fun fromTemplate(origin: TubeLine, template: TubeStopTemplate) : TubeStop {
             // Stop filtering out origin line to allow home screen to show all services from that station
 //            val lines = template.lines.filter {
@@ -21,7 +25,7 @@ data class TubeStop(
 //            }.map { TubeLine.stringToTubeLine(it.id) }
             val lines = template.lines
                 .filter { line -> line.id in TubeLine.values().map { it.id } }
-                .mapNotNull { TubeLine.stringToTubeLine(it.id) }
+                .map { TubeLine.stringToTubeLine(it.id) }
             val additionalProperties = template.additionalProperties.associate { it.key to it.value }
             return TubeStop(
                 template.id,

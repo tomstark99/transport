@@ -14,7 +14,7 @@ interface StationMvp : BaseMvp {
         fun showError()
     }
     interface Presenter : BaseMvp.Presenter {
-        fun onCreate(line: TubeLine, station: TubeStop)
-        fun onRefresh(line: TubeLine, station: TubeStop)
+        fun onCreate(station: TubeStop)
+        fun onRefresh(station: TubeStop)
     }
 }

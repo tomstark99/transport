@@ -14,6 +14,12 @@ class TubeManagerImpl (private val service: TransportService) : TubeManager {
         }
     }
 
+    override fun getLinesService(lines: List<TubeManager.TubeLine>): Single<List<Tube>> {
+        return service.getTube(lines.joinToString(",") { it.id }).map { response ->
+            response.map { Tube.fromTemplate(it) }
+        }
+    }
+
     override fun getStopsService(line: TubeManager.TubeLine): Single<List<TubeStop>> {
         return service.getStops(line.id).map { response ->
             response.map { TubeStop.fromTemplate(line, it) }
@@ -34,6 +40,19 @@ class TubeManagerImpl (private val service: TransportService) : TubeManager {
             }
         }
     }
+
+    override fun getTimetableServiceWithoutGrouping(
+        line: TubeManager.TubeLine,
+        stationId: String
+    ): Single<List<TubeTime>> {
+        return service.getTimetable(
+            line.id,
+            stationId
+        ).map { response ->
+            response.map { TubeTime.fromTemplate(it) }
+        }
+    }
+
 
     @Suppress("UNCHECKED_CAST")
     private fun List<TubeTime>.guessPlatform(): List<TubeTime> {

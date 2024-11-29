@@ -2,7 +2,6 @@ package com.android.transport2.ui.navigation.train
 
 import android.util.Log
 import com.android.transport2.arch.DataModule
-import com.android.transport2.arch.PreferenceModule
 import com.android.transport2.arch.android.BasePresenter
 import com.android.transport2.arch.managers.TubeManager
 import com.android.transport2.arch.managers.TubeManager.TubeLine

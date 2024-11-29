@@ -43,6 +43,11 @@
             android:label="@string/title_activity_line"
             android:theme="@style/Theme.Transport"
             android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".ui.navigation.train.station.StationActivity"
+            android:label="@string/title_activity_line"
+            android:theme="@style/Theme.Transport"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 
 </manifest>

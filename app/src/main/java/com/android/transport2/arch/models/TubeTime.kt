@@ -7,8 +7,8 @@ import org.joda.time.DateTime
 import java.io.Serializable
 
 data class TubeTime(
-    val line: TubeManager.TubeLine?,
-    val station: TubeStop?,
+    val line: TubeManager.TubeLine,
+    val station: TubeStop,
     val direction: String,
     val platform: String,
     val towards: String,
@@ -39,7 +39,8 @@ data class TubeTime(
                 null,
                 null,
                 null,
-                line!!) // hopefully this doesn't blow up
+                line
+            )
             val destination = if (template.destinationNaptanId.isNullOrEmpty()) null else TubeStop(
                 template.destinationNaptanId,
                 template.destinationName!!

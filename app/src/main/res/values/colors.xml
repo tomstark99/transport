@@ -142,4 +142,30 @@
     <color name="colour_weaver">#339b0058</color>
     <color name="colour_windrush">#33dc241f</color>
 
+<!--    Solid colours (75%)-->
+    <color name="colour_bakerloo_solid">#99a65a2a</color>
+    <color name="colour_central_solid">#99e1251b</color>
+    <color name="colour_circle_solid">#99ffcd00</color>
+    <color name="colour_district_solid">#99007934</color>
+    <color name="colour_hammersmith_solid">#99ec9bad</color>
+    <color name="colour_jubilee_solid">#997b868c</color>
+    <color name="colour_metropolitan_solid">#99870f54</color>
+    <color name="colour_northern_solid">#99000000</color>
+    <color name="colour_piccadilly_solid">#99000f9f</color>
+    <color name="colour_victoria_solid">#9900a0df</color>
+    <color name="colour_waterloo_solid">#996bcdb2</color>
+    <color name="colour_dlr_solid">#9900afaa</color>
+    <color name="colour_elizabeth_solid">#99773dbd</color>
+    <color name="colour_tram_solid">#9976bc21</color>
+
+    <color name="colour_overground_solid">#99ee7623</color>
+
+    <!--    These are eyedropped from tfl status website, not official hex-->
+    <color name="colour_liberty_solid">#9961686b</color>
+    <color name="colour_lioness_solid">#99ffa600</color>
+    <color name="colour_mildmay_solid">#99006fe6</color>
+    <color name="colour_suffragette_solid">#9918a95d</color>
+    <color name="colour_weaver_solid">#999b0058</color>
+    <color name="colour_windrush_solid">#99dc241f</color>
+
 </resources>

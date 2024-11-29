@@ -1,4 +1,4 @@
-package com.android.transport2.ui.navigation.train.station
+package com.android.transport2.ui.navigation.commute
 
 import android.app.Activity
 import android.graphics.drawable.GradientDrawable
@@ -13,7 +13,6 @@ import com.android.transport2.arch.models.TubeStop
 import com.android.transport2.arch.models.TubeTime
 import com.android.transport2.arch.utils.Utils.getGradientDrawable
 import com.android.transport2.databinding.ElementTimetableHomeBinding
-import com.android.transport2.ui.navigation.commute.TimetableAdapter
 
 class StationAdapter(private val station: TubeStop,
                      private val context: Activity

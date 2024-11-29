@@ -5,6 +5,10 @@
         android:icon="@drawable/train_selector"
         android:title="@string/nav_home"/>
     <item
+        android:id="@+id/menu_commute"
+        android:icon="@drawable/commute_selector"
+        android:title="@string/nav_commute"/>
+    <item
         android:id="@+id/menu_tube"
         android:icon="@drawable/tube_selector"
         android:title="@string/nav_tube"/>

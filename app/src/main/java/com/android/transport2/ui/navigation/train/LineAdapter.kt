@@ -1,6 +1,5 @@
 package com.android.transport2.ui.navigation.train
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
@@ -19,9 +18,8 @@ import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
-import kotlin.properties.Delegates
 
-class HomeLineAdapter(private val context: Activity, private val load: Load) : RecyclerView.Adapter<HomeLineAdapter.LineViewHolder>() {
+class LineAdapter(private val context: Activity, private val load: Load) : RecyclerView.Adapter<LineAdapter.LineViewHolder>() {
 
     private var stops = mutableListOf<TubeStop>()
     private var initialRadius: Float = Float.MIN_VALUE
@@ -40,7 +38,6 @@ class HomeLineAdapter(private val context: Activity, private val load: Load) : R
         return LineViewHolder(ElementLineHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    @SuppressLint("WrongConstant")
     override fun onBindViewHolder(holder: LineViewHolder, position: Int) {
         when(status) {
             is Status.Normal -> {
@@ -50,30 +47,17 @@ class HomeLineAdapter(private val context: Activity, private val load: Load) : R
                             initialRadius = (binding.tubeStatusHomeElement.background as GradientDrawable).cornerRadius
                         }
                         binding.tubeStatusHomeElement.background = getGradientDrawable(context, initialRadius, lines.map { it.color })
-//                        if (lines.size > 1) {
-//                            val colours = lines.map { context.getColor(it.color) }.toIntArray()
-//                            val gradientDrawable = GradientDrawable(
-//
-//                                GradientDrawable.Orientation.LEFT_RIGHT,
-//                                colours)
-//                            gradientDrawable.cornerRadius = context.
-//                            binding.tubeStatusHomeElement.background = gradientDrawable
-//                        } else {
-//                            val drawable = binding.tubeStatusHomeElement.background as GradientDrawable
-//                            drawable.setColor(context.getColor(origin.color))
-//                            binding.tubeStatusHomeElement.background = drawable
-////                            drawable.colors = null
-//                        }
+
                         binding.stopText.text = name
                         val additionalInfo = """Zone ${additionalProperties!!["Zone"]}""" +
                                 if (additionalProperties["Escalators"].isNullOrEmpty() || additionalProperties["Escalators"] == "0") "    " else """    ${additionalProperties["Escalators"]} Escalators""" +
                                 if (additionalProperties["Toilets"] == "    Yes") "Toilets" else "    "
-                        holder.binding.infoText.text = additionalInfo
+                        binding.infoText.text = additionalInfo
                         val layoutManager = FlexboxLayoutManager(context, FlexDirection.ROW)
                         layoutManager.justifyContent = JustifyContent.FLEX_START
-                        holder.binding.connectingLinesList.layoutManager = layoutManager
-                        holder.binding.connectingLinesList.itemAnimator = DefaultItemAnimator()
-                        holder.binding.connectingLinesList.adapter = ConnectionAdapter(context).apply {
+                        binding.connectingLinesList.layoutManager = layoutManager
+                        binding.connectingLinesList.itemAnimator = DefaultItemAnimator()
+                        binding.connectingLinesList.adapter = ConnectionAdapter(context).apply {
                             showConnection(lines.map { it })
                         }
                     }

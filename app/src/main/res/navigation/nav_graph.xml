@@ -12,9 +12,27 @@
         tools:layout="@layout/fragment_first">
 
         <action
+            android:id="@+id/action_FirstFragment_to_MiddleFragment"
+            app:destination="@id/MiddleFragment" />
+        <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/MiddleFragment"
+        android:name="com.android.transport2.ui.navigation.commute.MiddleFragment"
+        android:label="@string/middle_fragment_label"
+        tools:layout="@layout/fragment_middle">
+
+        <action
+            android:id="@+id/action_MiddleFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_MiddleFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.android.transport2.ui.navigation.tube.SecondFragment"
@@ -24,5 +42,8 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_MiddleFragment"
+            app:destination="@id/MiddleFragment" />
     </fragment>
 </navigation>

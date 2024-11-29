@@ -97,7 +97,7 @@ class LineActivity : BaseActivity<LineMvp.Presenter>(), LineMvp.View, Load {
             .addOnSuccessListener { location ->
                 val filtered = stops.filter { stop ->
                     val stopLocation = Location("").apply { latitude = stop.lat!!; longitude = stop.lon!! }
-                    location.distanceTo(stopLocation) < 2500
+                    location.distanceTo(stopLocation) < 10000
                 }
                 val filteredSorted = filtered.sortedBy { stop ->
                     val stopLocation = Location("").apply { latitude = stop.lat!!; longitude = stop.lon!! }

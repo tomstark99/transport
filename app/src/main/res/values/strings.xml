@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
+    <string name="middle_fragment_label">Middle Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -43,8 +44,10 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="nav_home">Home</string>
+    <string name="nav_commute">Commute</string>
+    <string name="nav_tube">Status</string>
     <string name="nav_train">Train</string>
-    <string name="nav_tube">Tube</string>
 
     <string name="line_bakerloo">Bakerloo</string>
     <string name="line_central">Central</string>
@@ -70,6 +73,5 @@
     <string name="line_unknown">Unknown</string>
     <string name="title_activity_line">Stops</string>
     <string name="live">Live</string>
-    <string name="nav_home">Home\n</string>
     <string name="nearby_stations">Nearby Stations</string>
 </resources>

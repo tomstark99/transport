@@ -1,4 +1,4 @@
-package com.android.transport2.ui.navigation.train.station
+package com.android.transport2.ui.navigation.commute
 
 import android.app.Activity
 import android.graphics.drawable.GradientDrawable
@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.transport2.arch.models.TubeTime
-import com.android.transport2.databinding.ElementTimetableTrainBinding
+import com.android.transport2.databinding.ElementTimetableTrainHomeBinding
 import org.joda.time.Period
-import org.joda.time.PeriodType
 import org.joda.time.Seconds
 import org.joda.time.format.PeriodFormatterBuilder
 
@@ -24,10 +23,10 @@ class TimetableAdapter(private val context: Activity) : RecyclerView.Adapter<Tim
 
     private var status: Status = Status.Loading
 
-    inner class TimetableViewHolder(val binding: ElementTimetableTrainBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class TimetableViewHolder(val binding: ElementTimetableTrainHomeBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimetableViewHolder {
-        return TimetableViewHolder(ElementTimetableTrainBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return TimetableViewHolder(ElementTimetableTrainHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: TimetableViewHolder, position: Int) {
@@ -37,10 +36,10 @@ class TimetableAdapter(private val context: Activity) : RecyclerView.Adapter<Tim
                     with(times[position]) {
                         binding.directionText.text = towards.ifEmpty { destination?.name?.replace(" Station", "", true) ?: "" }
 //                        binding.platformText.text = if (platform.length == 1) """Platform $platform""" else platform
-                        (binding.arrivalTimeText.background as GradientDrawable).setColor(context.getColor(line!!.color))
+                        (binding.arrivalTimeText.background as GradientDrawable).setColor(context.getColor(line.colorSolid))
                         binding.arrivalTimeText.text = timeToStation(timeToStation)
                         binding.currentLocationText.text = if (currentLocation.isNotEmpty()) """Currently ${currentLocation.first().lowercase()}${currentLocation.removeRange(0,1)}""" else ""
-//                        binding.trainIdText.text = """ID-$vehicleId"""
+                        binding.lineText.text = context.getString(line.commonName)
                     }
                 }
             }
